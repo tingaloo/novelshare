@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  get 'books/index'
+
+  root to: 'books#index'
   devise_for :users
   resources :users
+  resources :book_checkouts
+  resources :books
 end

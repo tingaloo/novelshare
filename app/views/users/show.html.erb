@@ -1,2 +1,10 @@
 <h3>User</h3>
 <p>Email: <%= @user.email if @user.email %></p>
+
+<ul>
+<%= @user.donated_books.each do |book| %>
+  <li>
+    <%= book.title %>
+  </li>
+<% end %>
+</ul>

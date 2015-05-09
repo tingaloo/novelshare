@@ -16,6 +16,15 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'pg'
 gem 'simple_form'
+
+# EXTERNAL APIS
+
+gem 'goodreads', '~> 0.3.0'
+
+gem "omniauth"
+gem "oauth"
+
+
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'

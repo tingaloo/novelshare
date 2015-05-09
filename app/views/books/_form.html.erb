@@ -1,0 +1,7 @@
+<%= simple_form_for :book, multipart: true, url: books_path do |f| %>
+  <%= f.input :title, label: 'Book Title' %>
+  <%= f.input :author %>
+  <%= f.input :condition %>
+
+  <%= f.button :submit, "Share It!", :class => "round button" %>
+<% end %>

@@ -1,0 +1,49 @@
+
+<div class="row fullWidth">
+  <div class="large-12 columns">
+    <h1> See What is Available, Unavailable, New </h1>
+      <div class="large-4 medium-2 columns">
+        <h3>Top Donor: <%= @top_donor.email %></h3>
+        <h3>Books in Circulation: <%= @total_books %> </h3>
+
+        <h3>Top Reader:</h3>
+
+    <br>
+    <br>
+      </div>
+      <div class ="large-8 medium-10 columns">
+      <% @books.each do |book| %>
+        <div class="row">
+          <div class="large-12 columns index-book <%= book.css_classes %>">
+          <%= link_to book.title, book_path(book) %>
+           <p><%= book.author %></p>
+
+
+
+
+          <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
+            <%= f.hidden_field :book_id, value: book.id %>
+            <%= f.button :submit, "Checkout", :class => "index-button" %>
+            <%= link_to "Show", book_path(book), :class => "button index-button" %>
+            <%= link_to "Edit", edit_book_path(book), :class => "button index-button" %>
+            <%= link_to "Burn", book_path(book),
+            method: :delete, :class => "button index-button",
+            data: {confirm: "Burning is easier than writing"} %>
+          <% end %>
+
+
+
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
