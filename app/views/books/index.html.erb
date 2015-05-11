@@ -20,8 +20,8 @@
 
 
 
-
-          <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
+<!-- creates a new checkout on form click
+ -->          <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
             <%= f.hidden_field :book_id, value: book.id %>
             <%= f.button :submit, "Checkout", :class => "index-button" %>
             <%= link_to "Show", book_path(book), :class => "button index-button" %>

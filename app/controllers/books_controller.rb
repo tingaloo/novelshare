@@ -4,6 +4,8 @@ class BooksController < ApplicationController
   def index
     @total_books = Book.count
     @top_donor = User.order('books_count desc').first
+    # @book_worm = User.order('books_read desc').first
+    # Before checkout, books are wrapped in /presenter
     @books = Book.all.map do |book|
       BookPresenter.new(book)
     end
