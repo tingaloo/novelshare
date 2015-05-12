@@ -2,24 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.index-book {
-  // border-style:solid;
-  float:left !important; //foundation last child floats right
-  border-style: solid;
-  border-width:1px;
-  border-radius: 10px;
-  height:50px;
-  // padding-top:5px;
-  > h3, p {
-    display:inline;
-    padding-top:5px;
-  }
-  >li {
-
-  }
+main {
+  background-color: #F7F7F7;
 }
 
+
 .index-button {
+  visibility:hidden;
   margin-left:5px;
   margin-top: -18.750px;
   float:right;
@@ -31,6 +20,29 @@
   background-color:black;
 }
 
+.index-book {
+  // border-style:solid;
+  float:left !important; //foundation last child floats right
+  border-style: solid;
+  border-width:1px;
+  border-radius: 10px;
+  border-color: #C5EFF7;
+  // border-color:transparent;
+  height:50px;
+  // padding-top:5px;
+  > h3, p {
+    display:inline;
+    padding-top:5px;
+  }
+  &:hover{
+    // border-color: red;
+    > .simple_form > .index-button {
+      visibility: visible;
+    }
+  }
+
+}
+
 .override{
   padding:-10px;
   margin-left:-5px;
@@ -38,14 +50,73 @@
 }
 
 .just_added {
-  border-color:purple;
+  // border-color:purple;
 }
 
 .available {
-  border-color: green;
+  -webkit-transition: border-color .25s ease-in;
+  -moz-transition: border-color .25s ease-in;
+  -o-transition: border-color .25s ease-in;
+  transition: border-color .25s ease-in;
+  &:hover{
+    border-color: green;
+  }
 }
 
+.status-toggles {
+
+
+  -webkit-transition: border-color 1s ease-in;
+-moz-transition: border-color 1s ease-in;
+-o-transition: border-color 1s ease-in;
+transition: border-color 1s ease-in;
+
+  > #toggle-available {
+    border-style: solid;
+    border-width:1px;
+    border-radius: 10px;
+    padding: 5px;
+    &:hover {
+      border-color: green;
+      color:green;
+    }
+  }
+
+  > #toggle-unavailable {
+    border-style: solid;
+  border-width:1px;
+  border-radius: 10px;
+  padding: 5px;
+  &:hover {
+      border-color: red;
+      color:red;
+    }
+  }
+  > #toggle-new {
+    border-style: solid;
+  border-width:1px;
+  border-radius: 10px;
+  padding: 5px;
+  &:hover {
+      border-color: purple;
+      color: purple;
+    }
+  }
+}
+
+.books {
+
+}
 .unavailable {
-  border-color: red;
+  // border-color: red;
+  // border-color: transparent;
+  -webkit-transition: border-color .25s ease-in;
+-moz-transition: border-color .25s ease-in;
+-o-transition: border-color .25s ease-in;
+transition: border-color .25s ease-in;
+  &:hover{
+    border-color: red;
+    // visibility: visible;
+  }
 }
 

@@ -1,29 +1,40 @@
 
 <div class="row fullWidth">
   <div class="large-12 columns">
-    <h1> See What is Available, Unavailable, New </h1>
+    <h1> See What is
+    <span class="status-toggles">
+    <span id="toggle-available">Available</span>
+    <span id="toggle-unavailable">Unavailable</span>
+    <span id="toggle-new"> New </span></h1>
+    </span>
       <div class="large-4 medium-2 columns">
-        <h3>Top Donor: <%= @top_donor.email %></h3>
-        <h3>Books in Circulation: <%= @total_books %> </h3>
+        <h3>Top Donor: <h6><%= @top_donor.email %></h6></h3>
+        <h3>Total Books: <%= @total_books %> </h3><br>
 
-        <h3>Top Reader:</h3>
+        <h3>Top Bookworm:</h3><br>
+
+        <h3>Bookhog:</h3>
 
     <br>
     <br>
       </div>
       <div class ="large-8 medium-10 columns">
       <% @books.each do |book| %>
-        <div class="row">
+        <div class="row books">
           <div class="large-12 columns index-book <%= book.css_classes %>">
           <%= link_to book.title, book_path(book) %>
-           <p><%= book.author %></p>
-
+           <p><%= book.author %></p><br>
+           <p>Donated by <%= book.user.email %></p>
 
 
 <!-- creates a new checkout on form click
  -->          <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
             <%= f.hidden_field :book_id, value: book.id %>
-            <%= f.button :submit, "Checkout", :class => "index-button" %>
+            <% if book.user == current_user %>
+              <%= f.button :submit, "Return", :class => "index-button" %>
+            <% else %>
+             <%= f.button :submit, "Checkout", :class => "index-button" %>
+            <% end %>
             <%= link_to "Show", book_path(book), :class => "button index-button" %>
             <%= link_to "Edit", edit_book_path(book), :class => "button index-button" %>
             <%= link_to "Burn", book_path(book),

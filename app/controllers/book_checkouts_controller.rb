@@ -12,4 +12,10 @@ class BookCheckoutsController < ApplicationController
     redirect_to books_path
   end
 
+  def delete
+    checkout_params = {
+
+    }
+  end
+
 end
