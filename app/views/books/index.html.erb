@@ -14,7 +14,7 @@
         <h3>Top Bookworm:</h3><br>
 
         <h3>Bookhog:</h3>
-
+    <%= BookCheckout.first %>
     <br>
     <br>
       </div>
@@ -25,22 +25,26 @@
           <%= link_to book.title, book_path(book) %>
            <p><%= book.author %></p><br>
            <p>Donated by <%= book.user.email %></p>
+    <%= BookCheckout.find_by book_id: book.id %>
 
 
-<!-- creates a new checkout on form click
- -->          <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
+
+<!-- Can't invoke a change in the current book and a creation of another book checkout with one button. Unless they were both nested.
+ -->
+
+
+     <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
+          <%= f.hidden_field :checkout_user_id, value: 3 %>
             <%= f.hidden_field :book_id, value: book.id %>
-            <% if book.user == current_user %>
-              <%= f.button :submit, "Return", :class => "index-button" %>
-            <% else %>
-             <%= f.button :submit, "Checkout", :class => "index-button" %>
-            <% end %>
+            <%= f.button :submit, "Checkout", :class => "index-button" %>
+
             <%= link_to "Show", book_path(book), :class => "button index-button" %>
             <%= link_to "Edit", edit_book_path(book), :class => "button index-button" %>
             <%= link_to "Burn", book_path(book),
             method: :delete, :class => "button index-button",
             data: {confirm: "Burning is easier than writing"} %>
           <% end %>
+
 
 
 

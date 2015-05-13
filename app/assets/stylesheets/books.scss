@@ -16,7 +16,6 @@ main {
   border-style: solid;
   border-width:1px;
   border-radius: 10px !important;
-  float:right;
   background-color:black;
 }
 
@@ -29,6 +28,11 @@ main {
   border-color: #C5EFF7;
   // border-color:transparent;
   height:50px;
+
+    -webkit-transition: border-color .25s ease-in;
+-moz-transition: border-color .25s ease-in;
+-o-transition: border-color .25s ease-in;
+transition: border-color .25s ease-in;
   // padding-top:5px;
   > h3, p {
     display:inline;
@@ -58,9 +62,9 @@ main {
   -moz-transition: border-color .25s ease-in;
   -o-transition: border-color .25s ease-in;
   transition: border-color .25s ease-in;
-  &:hover{
-    border-color: green;
-  }
+  // &:hover{
+  //   border-color: green;
+  // }
 }
 
 .status-toggles {

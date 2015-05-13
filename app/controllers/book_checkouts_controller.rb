@@ -12,10 +12,12 @@ class BookCheckoutsController < ApplicationController
     redirect_to books_path
   end
 
-  def delete
-    checkout_params = {
+  def destroy
+    @book_checkout = BookCheckout.find(params[:id])
+    @book_checkout.destroy
 
-    }
+    redirect_to books_path
   end
+
 
 end
