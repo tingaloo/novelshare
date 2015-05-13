@@ -6,6 +6,11 @@ class BookCheckoutsController < ApplicationController
       book_id: params[:book_checkout][:book_id],
       return_deadline: Time.zone.now + 2.weeks,
     }
+    @book_id = params[:book_checkout][:book_id]
+    @book = Book.find(@book_id)
+    @book.checkout_user_id = current_user.id
+    @book.save
+    # Book.find(:book_id).checkout_user_id = current_user.id;
     @book_checkouts = BookCheckout.create(checkout_params)
     #TODO ERROR HANDLING MESSAGES
     #flash[:error] = "Sorry, that book was unavailable."
