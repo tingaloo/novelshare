@@ -11,7 +11,8 @@ main {
   visibility:hidden;
   float:right;
   border-style: solid;
-  background-color:black;
+  color:black;
+  background-color:white;
 
   border-radius:10px !important;
   margin-left:  5px;
@@ -20,6 +21,7 @@ main {
   border-width: 1px;
 }
 
+
 .index-book {
   float:left !important; //foundation last child floats right
   border-style: solid;
@@ -27,7 +29,10 @@ main {
   border-radius: 10px;
   border-color: #C5EFF7;
   height:50px;
-
+  > .checked_out_user{
+    visibility: hidden;
+    color:red;
+  }
   > p, h3 {
     display:inline;
     padding-top:5px;
@@ -37,8 +42,17 @@ main {
     > .simple_form > .index-button {
       visibility: visible;
     }
+    > .checked_out_user {
+      visibility: visible;
+    }
   }
 
+}
+.return-button {
+  margin-top: -45px;
+  margin-right: -125px;
+  color: green !important;
+  background-color: white;
 }
 
 

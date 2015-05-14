@@ -18,10 +18,22 @@ class BookCheckoutsController < ApplicationController
   end
 
   def destroy
-    @book_checkout = BookCheckout.find(params[:id])
+
+    # @book_checkout = BookCheckout.where(book_id: params[:book]).first
+    # @book_checkout = BookCheckout.find(params[:book_id].inspect)
+    @book_checkout = BookCheckout.find_by(book_id: params[:check])
+    # @book_checkout = BookCheckout.where(book_id: params[:book_id]).first
+    @book = Book.find(params[:check])
+    @book.checkout_user_id = nil
+    @book.save
+
     @book_checkout.destroy
 
     redirect_to books_path
+  end
+
+  def show
+    @book_checkout = BookCheckout.find(params[:id])
   end
 
 

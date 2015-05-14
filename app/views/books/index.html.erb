@@ -23,27 +23,37 @@
         <div class="row books">
           <div class="large-12 columns index-book <%= book.css_classes %>">
           <%= link_to book.title, book_path(book) %>
-           <p><%= book.author %></p><br>
-           <p>Donated by <%= book.user.email %></p>
-    <%= BookCheckout.find_by book_id: book.id %>
+            <p><%= book.author %></p>
+            <% unless book.checkout_user_id == nil %>
+              <br>
+              <p class="checked_out_user">Checked out by <%= User.find(book.checkout_user_id).email %></p>
+            <% end %>
+<!--
+    <%= @book_checkout = BookCheckout.where(book_id: book.id).first.try(:id) %>
 
-
+ -->
 
 <!-- Can't invoke a change in the current book and a creation of another book checkout with one button. Unless they were both nested.
  -->
-
+<!-- need 25
+ -->
+<!--  book id is 10, therefore 10 is passed -->
+  <% unless book.checkout_user_id == nil %>
+    <%= link_to "delete checkout", book_checkout_path(id: book.id, check: book.id), :confirm => 'Are you sure?', :class => "index-button", :method => :delete %>
+  <% end %>
 
      <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
           <%= f.hidden_field :checkout_user_id, value: 3 %>
             <%= f.hidden_field :book_id, value: book.id %>
-            <%= f.button :submit, "Checkout", :class => "index-button" %>
+            <% if book.checkout_user_id != current_user.id %>
+              <%= f.button :submit, "Checkout", :class => "index-button" %>
+            <% else %>
+              <%= link_to "Return", book_checkout_path(id: book.id, check: book.id), :confirm => 'Are you sure?', :class => "index-button return-button", :method => :delete %>
+            <% end %>
 
-            <%= link_to "Show", book_path(book), :class => "button index-button" %>
-            <%= link_to "Edit", edit_book_path(book), :class => "button index-button" %>
-            <%= link_to "Burn", book_path(book),
-            method: :delete, :class => "button index-button",
-            data: {confirm: "Burning is easier than writing"} %>
+
           <% end %>
+
 
 
 

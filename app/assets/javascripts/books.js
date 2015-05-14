@@ -6,7 +6,6 @@ $( document ).ready(function() {
     // On book hover, change to red/green
     $(".index-book").mouseenter(function()
     {
-
       if ($(".index-book").hasClass("unavailable")){
         $(this).closest(".unavailable").css("border-color", "red");
       }
@@ -14,6 +13,7 @@ $( document ).ready(function() {
       if ($(".index-book").hasClass("available")){
         $(this).closest(".available").css("border-color", "green");
       }
+
 
     });
 
@@ -32,6 +32,8 @@ $( document ).ready(function() {
     $("#toggle-new").mouseenter(function() {
       $(".just_added").css("border-color", "purple");
     });
+
+
 
     // on mouse leave, status children will return
     $(".status-toggles").children().mouseleave(function() {
