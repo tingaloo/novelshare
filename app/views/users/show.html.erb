@@ -1,10 +1,32 @@
-<h3>User</h3>
-<p>Email: <%= @user.email if @user.email %></p>
+<!-- <div class="show-intro">
+<h1> Your Private Reading Quarters </h1>
+<h3> Just gaze at all your books </h3><br><br>
+</div> -->
 
-<ul>
-<%= @user.donated_books.each do |book| %>
-  <li>
-    <%= book.title %>
-  </li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="large-6 medium-12 columns">
+    <h1> Books Donated: <%= @user.books.count %> </h1>
+      <% if @user.books.count == 0 %>
+        <p> Oh well, you can always read more books </p>
+      <% end %>
+      <% @user.books.each do |book| %>
+        <div class ="large-12 medium-12 columns index-book">
+        <%= book.title  %><br>
+        <%= book.author %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 medium-12 columns">
+    <h1> Checkout List: <%= @user.book_checkouts.count %> </h1>
+    <% @user.book_checkouts.each do |checkout| %>
+        <div class ="large-12 medium-12 columns index-book">
+        <%= Book.find(checkout.book_id).title  %><br>
+        <%= Book.find(checkout.book_id).author  %>
+        </div>
+        <%= link_to "Return", book_checkout_path(id: checkout.book_id, check: checkout.book_id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
+      <% end %>
+  </div>
+</div>

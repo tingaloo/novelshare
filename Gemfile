@@ -24,6 +24,10 @@ gem 'goodreads', '~> 0.3.0'
 gem "omniauth"
 gem "oauth"
 
+# NYT
+gem 'httparty'
+gem 'nytimes-bestsellers'
+
 
 group :development do
   gem 'better_errors'

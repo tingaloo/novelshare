@@ -126,6 +126,9 @@ GEM
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     hub (1.12.4)
     i18n (0.7.0)
     jbuilder (2.2.13)
@@ -152,6 +155,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
     nenv (0.2.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -159,6 +163,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nytimes-bestsellers (0.0.5)
     oauth (0.4.7)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
@@ -307,10 +312,12 @@ DEPENDENCIES
   guard-bundler
   guard-rails
   guard-rspec
+  httparty
   hub
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  nytimes-bestsellers
   oauth
   omniauth
   pg

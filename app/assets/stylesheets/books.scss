@@ -6,6 +6,29 @@ main {
   background-color: #F7F7F7;
 }
 
+.intro-banner {
+  background-color: #885CA4;
+  padding: 15px;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  >h1, h3 {
+    color: white;
+  }
+}
+
+#banner {
+  margin-top: 10px;
+  float:right;
+}
+
+.scoreboard {
+  background-color: #885CA4;
+  border-radius: 10px;
+  > h1, h3, h6 {
+    color: white;
+  }
+}
+
 .index-button {
 
   visibility:hidden;
@@ -21,38 +44,61 @@ main {
   border-width: 1px;
 }
 
+.button-style {
+  margin-top:5px auto;
+  background-color: white;
+  border-color: purple;
+  border-width:1px;
+  border-radius:10px !important;
+}
+
 
 .index-book {
   float:left !important; //foundation last child floats right
   border-style: solid;
-  border-width:1px;
-  border-radius: 10px;
+  border-width:2px;
+  // border-radius: 10px;
+  margin-bottom:2px;
   border-color: #C5EFF7;
-  height:50px;
-  > .checked_out_user{
+  height:60px;
+  padding: -5px;
+  > .checked_out_user {
     visibility: hidden;
     color:red;
   }
-  > p, h3 {
-    display:inline;
-    padding-top:5px;
+
+  > .columns {
+    > p {
+        // display:inline;
+        padding-top:5px;
+        // color:red;
+      }
+    > .simple_form {
+      > p {
+        margin-top: 10px;
+      }
+      > .button {
+      background-color:white;
+      border-radius:10px;
+      border-color: purple;
+      border-width: 1px;
+      margin-top:2.5px;
+      color:black;
+      visibility: hidden;
+      float:right;
+      }
+    }
   }
+
   &:hover{
     // border-color: red;
-    > .simple_form > .index-button {
+    > .columns > .simple_form > .button {
       visibility: visible;
     }
     > .checked_out_user {
       visibility: visible;
     }
   }
-
-}
-.return-button {
-  margin-top: -45px;
-  margin-right: -125px;
-  color: green !important;
-  background-color: white;
 }
 
 
@@ -68,10 +114,13 @@ main {
 -moz-transition: border-color 1s ease-in;
 -o-transition: border-color 1s ease-in;
 transition: border-color 1s ease-in;
+padding-right: 10px;
+
   > span {
     border-style: solid;
     border-width:2px;
     border-radius: 10px;
+    margin-right:5px;
     padding: 5px;
   }
   > #toggle-available {
@@ -89,7 +138,7 @@ transition: border-color 1s ease-in;
   > #toggle-new {
     &:hover {
       border-color: purple;
-      color: purple;
+      color:purple;
     }
   }
 }

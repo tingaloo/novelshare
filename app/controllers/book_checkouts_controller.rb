@@ -6,12 +6,10 @@ class BookCheckoutsController < ApplicationController
       book_id: params[:book_checkout][:book_id],
       return_deadline: Time.zone.now + 2.weeks,
     }
-    @book_id = params[:book_checkout][:book_id]
-    @book = Book.find(@book_id)
-    @book.checkout_user_id = current_user.id
-    @book.save
-    # Book.find(:book_id).checkout_user_id = current_user.id;
-    @book_checkouts = BookCheckout.create(checkout_params)
+
+    @book_checkout = BookCheckout.new(checkout_params)
+    @book_checkout.save_and_verify
+
     #TODO ERROR HANDLING MESSAGES
     #flash[:error] = "Sorry, that book was unavailable."
     redirect_to books_path
@@ -19,13 +17,13 @@ class BookCheckoutsController < ApplicationController
 
   def destroy
 
-    # @book_checkout = BookCheckout.where(book_id: params[:book]).first
-    # @book_checkout = BookCheckout.find(params[:book_id].inspect)
-    @book_checkout = BookCheckout.find_by(book_id: params[:check])
-    # @book_checkout = BookCheckout.where(book_id: params[:book_id]).first
-    @book = Book.find(params[:check])
+
+    @book_checkout = BookCheckout.find_by(book_id: params[:id])
+    @book = @book_checkout.book
     @book.checkout_user_id = nil
+    @book.available = true
     @book.save
+
 
     @book_checkout.destroy
 

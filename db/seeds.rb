@@ -7,3 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+Book.create("title" => "Hot Dog",         "author" =>"Dog", "user_id"=>5)
+Book.create("title" => "Peanut Butter",   "author" =>"Jelly", "user_id"=>5)
+Book.create("title" => "GoodHell",        "author" =>"Hell", "user_id"=>5)
+Book.create("title" => "Galantis",        "author" =>"Box", "user_id"=>5)
+Book.create("title" => "Charlotte's Web", "author" =>"Cash", "user_id"=>5)
+Book.create("title" => "Funn",            "author" =>"Cash", "user_id"=>5)

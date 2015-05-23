@@ -1,65 +1,88 @@
+  <% unless user_signed_in? %>
+  <%= render 'intro' %>
+  <% end %>
 
 <div class="row fullWidth">
   <div class="large-12 columns">
-    <h1> See What is
+    <h1 id = 'banner'> What is
     <span class="status-toggles">
-    <span id="toggle-available">Available</span>
+      <span id="toggle-available">Available</span>
     <span id="toggle-unavailable">Unavailable</span>
-    <span id="toggle-new"> New </span></h1>
+    <span id="toggle-new"> New</span>
+    <span id="book-drop">
+      <%= link_to "BookDrop", airdrop_path, :class => "", method: :get%></span>
     </span>
-      <div class="large-4 medium-2 columns">
-        <h3>Top Donor: <h6><%= @top_donor.email %></h6></h3>
-        <h3>Total Books: <%= @total_books %> </h3><br>
+    </h1>
+      <div class="large-3 medium-6 hide-for-medium-down columns scoreboard">
+        <h1 class="text-center"> Charts </h1>
+        <% if User.exists? %>
+          <h3>Top Donor: <h6><%= @top_donor.email %></h6></h3>
+          <h3>Top Bookworm: <h6><%= @bookworm.email %></h6></h3>
+        <% end %>
 
-        <h3>Top Bookworm:</h3><br>
-
-        <h3>Bookhog:</h3>
-    <%= BookCheckout.first %>
+        <h3>Total Books: <%= @total_books %> </h3>
+        <h3>Total Users: <%= @total_users %> </h3><br>
+        <h3>Airdrop Count: <%= @airdrop_count %> </h3>
     <br>
     <br>
       </div>
-      <div class ="large-8 medium-10 columns">
+      <div class ="large-8 medium-12 columns">
       <% @books.each do |book| %>
+
         <div class="row books">
-          <div class="large-12 columns index-book <%= book.css_classes %>">
-          <%= link_to book.title, book_path(book) %>
-            <p><%= book.author %></p>
-            <% unless book.checkout_user_id == nil %>
-              <br>
-              <p class="checked_out_user">Checked out by <%= User.find(book.checkout_user_id).email %></p>
+
+          <div class="large-12 medium-12 columns index-book <%= book.css_classes %>">
+
+            <div class="large-6 medium-6 medium-6 columns">
+            <p><%= book.title %>
+                <br>
+               <%= book.author %></p>
+            <% if user_signed_in? %>
+              <% unless (book.checkout_user_id == nil || book.checkout_user_id == current_user.id) %>
+              <% end %>
             <% end %>
+            </div>
 <!--
     <%= @book_checkout = BookCheckout.where(book_id: book.id).first.try(:id) %>
 
  -->
 
-<!-- Can't invoke a change in the current book and a creation of another book checkout with one button. Unless they were both nested.
- -->
-<!-- need 25
- -->
-<!--  book id is 10, therefore 10 is passed -->
-  <% unless book.checkout_user_id == nil %>
-    <%= link_to "delete checkout", book_checkout_path(id: book.id, check: book.id), :confirm => 'Are you sure?', :class => "index-button", :method => :delete %>
-  <% end %>
+<div class="large-6 medium-6 small-6 columns">
 
      <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
+
           <%= f.hidden_field :checkout_user_id, value: 3 %>
             <%= f.hidden_field :book_id, value: book.id %>
-            <% if book.checkout_user_id != current_user.id %>
-              <%= f.button :submit, "Checkout", :class => "index-button" %>
-            <% else %>
-              <%= link_to "Return", book_checkout_path(id: book.id, check: book.id), :confirm => 'Are you sure?', :class => "index-button return-button", :method => :delete %>
+            <% if user_signed_in? %>
+              <% if book.user_id == current_user.id && book.checkout_user_id == nil%>
+                <%= link_to "Remove", book_path(book), :confirm => 'Works!', :class => "button", :method => :delete %>
+              <% end %>
+            <% if book.checkout_user_id == nil %>
+              <% if book.user_id != current_user.id %>
+                <%= f.button :submit, "Checkout", :class => "" %>
+              <% end %>
             <% end %>
 
+            <% if book.checkout_user_id != nil %>
+
+              <% if book.checkout_user_id != current_user.id %>
+                <p>Checked out by <%= User.find(book.checkout_user_id).email %></p>
+              <% else %>
+                <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
+              <% end %>
+            <% end %> <!-- if book checked out/unavailable -->
+            <% end %> <!-- if signed in -->
 
           <% end %>
-
+</div>
 
 
 
 
             </div>
+
           </div>
+
           <% end %>
         </div>
 

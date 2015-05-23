@@ -13,5 +13,11 @@
  *= require "framework_and_overrides"
  *= require "book_checkouts"
  *= require "books"
+ *= require "users"
  *= require_self
  */
+
+ .top-bar {
+  background-color: #C787F0;
+
+ }

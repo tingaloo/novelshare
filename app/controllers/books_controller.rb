@@ -1,20 +1,37 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search, :results]
+  require 'open-uri'
+
+  # helper_method :airdrop
 
   def index
+
+    # Put these in view layer.
     @total_books = Book.count
+    @total_users = User.count
+    # Put these in helper methods.
     @top_donor = User.order('books_count desc').first
-    # @donor = book.user.email
-    # @book_worm = User.order('books_read desc').first
-    # Before checkout, books are wrapped in /presenter
+    @bookworm = User.order('books_read desc').first
 
-
-    @books = Book.all.map do |book|
+    @books = Book.order('available desc').map do |book|
       BookPresenter.new(book)
     end
+
+  end
+
+  def airdrop
+
+    @airdrop = Airdrop.new(user: current_user)
+    if @airdrop.save
+      redirect_to root_path, :notice => "You have a new book!"
+    else
+      redirect_to root_path, :notice => "Airdrop quota reached."
+    end
+
   end
 
   def show
+
 
     @book = Book.find(params[:id])
 
@@ -26,13 +43,7 @@ class BooksController < ApplicationController
 
     # @synopsis = truncate(@goodreadsbook.description.html_safe, :length =>100, :escape => false)
     @rating_count = @goodreadsbook.ratings_count
-    @user_name = current_user.name
-  end
 
-  def test
-    gon.push({
-      :count => Book.count
-      })
   end
 
   def search
@@ -67,8 +78,9 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
 
+
     if @book.save
-      redirect_to @book
+      redirect_to @book, :notice => "Book Created"
     else
       render 'new'
     end
@@ -91,10 +103,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def goodwill
+
+  end
+
 
  private
-
     def book_params
       params.require(:book).permit(:title, :author, :book_checkout_user)
     end
+
 end

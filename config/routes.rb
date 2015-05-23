@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :users
   resources :book_checkouts
   resources :books
+  get '/airdrop', to: 'books#airdrop'
 end
