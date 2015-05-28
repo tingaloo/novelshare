@@ -16,19 +16,13 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'pg'
 gem 'simple_form'
-gem "paperclip", "~> 4.2"
-gem "font-awesome-rails"
 
 # EXTERNAL APIS
 
 gem 'goodreads', '~> 0.3.0'
-
 gem "omniauth"
 gem "oauth"
 
-# NYT
-gem 'httparty'
-gem 'nytimes-bestsellers'
 
 
 group :development do

@@ -26,7 +26,6 @@ class BooksController < ApplicationController
   end
 
   def airdrop
-    # How does airdrop model access goodreadsbook?
     @airdrop = Airdrop.new(user: current_user)
     if @airdrop.save
       redirect_to root_path, :notice => "You have a new book!"
@@ -37,38 +36,18 @@ class BooksController < ApplicationController
 
   def show
 
-
     @book = Book.find(params[:id])
-
+    begin
     @goodreadsbook = goodreads.book_by_title(@book.title)
     @author = @goodreadsbook.authors.to_hash['author']
-    # list = flickr.photos.search :text => @book.title, :sort => "relevance"
     @avg_rating = @goodreadsbook.average_rating
-    @book_link = @goodreadsbook.book_link
-
-    # @synopsis = truncate(@goodreadsbook.description.html_safe, :length =>100, :escape => false)
+    @book_link = @goodreadsbook.link
     @rating_count = @goodreadsbook.ratings_count
-
-  end
-
-  def search
-
-  end
-
-  def results
-    # @search = params[:search]
-
-    # @goodreadsbook = goodreads.book_by_title(@search["search"])
-
-    # @author = @goodreadsbook.authors.to_hash['author']
-    # @isbn = @goodreadsbook.isbn
-
-    # @widget = (adjust_width(@goodreadsbook.reviews_widget)).html_safe
-    # @googlebook = JSON.load(open("https://www.googleapis.com/books/v1/volumes?q=isbn:"+@isbn))
-
-    # @avg_rating = @goodreadsbook.average_rating
-    # @book_link = @goodreadsbook.book_link
+    rescue
+      redirect_to root_path, :alert => "GoodReads couldn't find the associated book"
+    end
     # @synopsis = truncate(@goodreadsbook.description.html_safe, :length =>100, :escape => false)
+
 
   end
 
@@ -105,7 +84,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
 
-    redirect_to books_path
+    redirect_to books_path, :alert => "Book Removed"
   end
 
 

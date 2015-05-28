@@ -12,11 +12,10 @@ class BookCheckoutsController < ApplicationController
 
     #TODO ERROR HANDLING MESSAGES
     #flash[:error] = "Sorry, that book was unavailable."
-    redirect_to books_path
+    redirect_to books_path, :notice => "Checkout Successful"
   end
 
   def destroy
-
 
     @book_checkout = BookCheckout.find_by(book_id: params[:id])
     @book = @book_checkout.book
@@ -27,7 +26,7 @@ class BookCheckoutsController < ApplicationController
 
     @book_checkout.destroy
 
-    redirect_to books_path
+    redirect_to :back, :notice => "Return Successful"
   end
 
   def show

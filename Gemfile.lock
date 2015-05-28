@@ -58,10 +58,6 @@ GEM
       timers (~> 4.0.0)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.5)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -93,8 +89,6 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     foundation-rails (5.5.2.1)
       railties (>= 3.1.0)
@@ -132,9 +126,6 @@ GEM
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    httparty (0.13.5)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     hub (1.12.4)
     i18n (0.7.0)
     jbuilder (2.2.13)
@@ -161,7 +152,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
-    multi_xml (0.5.5)
     nenv (0.2.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -169,17 +159,11 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    nytimes-bestsellers (0.0.5)
     oauth (0.4.7)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
     orm_adapter (0.5.0)
-    paperclip (4.2.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
-      mime-types
     pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -316,21 +300,17 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
-  font-awesome-rails
   foundation-rails
   goodreads (~> 0.3.0)
   guard-bundler
   guard-rails
   guard-rspec
-  httparty
   hub
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  nytimes-bestsellers
   oauth
   omniauth
-  paperclip (~> 4.2)
   pg
   quiet_assets
   rails (= 4.2.0)
