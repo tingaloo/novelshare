@@ -3,7 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 main {
-  background-color: #F7F7F7;
+  background-color: #F5F5F5;
+  margin-left: -0.9375rem;
+  margin-right: -0.9375rem;
+  padding-top: 10px;
 }
 
 .intro-banner {
@@ -22,21 +25,23 @@ main {
 }
 
 .scoreboard {
-  background-color: #885CA4;
+  // background-color: #885CA4;
+  padding-left: 20px;
   border-radius: 10px;
-  > h1, h3, h6 {
-    color: white;
+  > h1 {
+    color: #9E9E9E;
+  }
+  > h3, h6 {
+    color: #565656;
   }
 }
 
 .index-button {
-
   visibility:hidden;
   float:right;
   border-style: solid;
   color:black;
   background-color:white;
-
   border-radius:10px !important;
   margin-left:  5px;
   margin-top:  -18.750px;
@@ -57,9 +62,9 @@ main {
   float:left !important; //foundation last child floats right
   border-style: solid;
   border-width:2px;
-  // border-radius: 10px;
+  border-radius: 10px;
   margin-bottom:2px;
-  border-color: #C5EFF7;
+  border-color: #E5D1F2;
   height:60px;
   padding: -5px;
   > .checked_out_user {
@@ -68,11 +73,18 @@ main {
   }
 
   > .columns {
-    > p {
-        // display:inline;
-        padding-top:5px;
-        // color:red;
-      }
+
+    > .button {
+      background-color:white;
+      border-radius:10px;
+      border-color: purple;
+      border-width: 1px;
+      margin-top:2.5px;
+      color:black;
+      // visibility: hidden;
+      float:right;
+    }
+
     > .simple_form {
       > p {
         margin-top: 10px;
@@ -86,6 +98,15 @@ main {
       color:black;
       visibility: hidden;
       float:right;
+
+      -webkit-transition: border-color 1s ease-in;
+      -moz-transition: border-color 1s ease-in;
+      -o-transition: border-color 1s ease-in;
+      transition: border-color 1s ease-in;
+
+        &:hover {
+
+        }
       }
     }
   }
@@ -101,6 +122,10 @@ main {
   }
 }
 
+.index-book-text {
+          padding-top:5px;
+        color:#555555;
+}
 
 .available, .unavailable, .index-book {
   -webkit-transition: border-color .25s ease-in;
@@ -115,18 +140,21 @@ main {
 -o-transition: border-color 1s ease-in;
 transition: border-color 1s ease-in;
 padding-right: 10px;
+color: #565656;
 
   > span {
     border-style: solid;
     border-width:2px;
-    border-radius: 10px;
-    margin-right:5px;
+    // border-radius: 10px;
+    margin-right:1px;
     padding: 5px;
+    padding-left:12px;
+    padding-right: 12px;
   }
   > #toggle-available {
     &:hover {
-      border-color: green;
-      color:green;
+      border-color: #57BD85;
+      color:#57BD85;
     }
   }
   > #toggle-unavailable {
@@ -141,6 +169,25 @@ padding-right: 10px;
       color:purple;
     }
   }
+  > #book-drop {
+    a {color: #565656;}
+    &:hover {
+      border-color: #C787F0;
+      >a {
+        color:#C787F0;
+      }
+    }
+  }
 }
 
 
+.book-show-cover {
+  float:right;
+  margin-right: 20px;
+  padding-top: 20px;
+}
+
+.about-page{
+  padding-right: 200px;
+  padding-left: 200px;
+}

@@ -4,7 +4,7 @@
 </div> -->
 
 <div class="row">
-  <div class="large-6 medium-12 columns">
+  <div class="large-12 medium-12 columns">
     <h1> Books Donated: <%= @user.books.count %> </h1>
       <% if @user.books.count == 0 %>
         <p> Oh well, you can always read more books </p>
@@ -19,14 +19,18 @@
 </div>
 
 <div class="row">
-  <div class="large-6 medium-12 columns">
+  <div class="large-12 medium-12 columns">
     <h1> Checkout List: <%= @user.book_checkouts.count %> </h1>
     <% @user.book_checkouts.each do |checkout| %>
         <div class ="large-12 medium-12 columns index-book">
-        <%= Book.find(checkout.book_id).title  %><br>
-        <%= Book.find(checkout.book_id).author  %>
+          <div class="large-8 columns">
+          <%= Book.find(checkout.book_id).title  %><br>
+          <%= Book.find(checkout.book_id).author  %>
+          </div>
+          <div class="large-4 columns">
+          <%= link_to "Return", book_checkout_path(id: checkout.book_id, check: checkout.book_id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
+          </div>
         </div>
-        <%= link_to "Return", book_checkout_path(id: checkout.book_id, check: checkout.book_id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
       <% end %>
   </div>
 </div>

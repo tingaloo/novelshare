@@ -17,10 +17,18 @@ class Airdrop
       @stocks << item.text
     end
 
+    # Loop checks for titles first
     while @rand.even? == false
       @rand = rand(0..@stocks.count-2)
     end
+    # Goodreads book only lives in controller
+    @title = @stocks[@rand]
+    @author = @stocks[@rand+1]
+    # How do I access goodreads API from model to fetch cover image?
+    # @goodreadsbook = @goodreads.book_by_title(@title)
 
-    @book = @user.books.build(:title => @stocks[@rand], :author => @stocks[@rand+1])
+    # I can build book in controller phase?
+    @book = @user.books.build(:title => @title, :author => @author
+      )
   end
 end

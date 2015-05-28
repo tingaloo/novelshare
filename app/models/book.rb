@@ -3,7 +3,6 @@ class Book < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 3}
   validates :author, presence: true
 
-
   has_many :book_checkouts, dependent: :destroy
 
   def available? # the presenter calls this
@@ -18,15 +17,6 @@ class Book < ActiveRecord::Base
     book_checkouts.order('return_deadline desc').first
   end
 
-
-  # CHANGES UPON USER CHANGE
-  # def mine?
-  #   if most_recent_checkout
-  #     most_recent_checkout.user_id == @user_id
-  #     er
-  #   end
-    # if book's checkout id matches current_id
-    # if book'd id matched current_id
 
   private
 

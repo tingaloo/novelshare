@@ -4,9 +4,9 @@
 
 <div class="row fullWidth">
   <div class="large-12 columns">
-    <h1 id = 'banner'> What is
+    <h1 id = 'banner'>
     <span class="status-toggles">
-      <span id="toggle-available">Available</span>
+    <span id="toggle-available">Available</span>
     <span id="toggle-unavailable">Unavailable</span>
     <span id="toggle-new"> New</span>
     <span id="book-drop">
@@ -14,7 +14,7 @@
     </span>
     </h1>
       <div class="large-3 medium-6 hide-for-medium-down columns scoreboard">
-        <h1 class="text-center"> Charts </h1>
+        <h1> Stats </h1>
         <% if User.exists? %>
           <h3>Top Donor: <h6><%= @top_donor.email %></h6></h3>
           <h3>Top Bookworm: <h6><%= @bookworm.email %></h6></h3>
@@ -22,18 +22,17 @@
 
         <h3>Total Books: <%= @total_books %> </h3>
         <h3>Total Users: <%= @total_users %> </h3><br>
-        <h3>Airdrop Count: <%= @airdrop_count %> </h3>
     <br>
     <br>
       </div>
-      <div class ="large-8 medium-12 columns">
+      <div class ="large-9 medium-12 columns">
       <% @books.each do |book| %>
-
+        <%= link_to(book_path(book)) do %>
         <div class="row books">
 
           <div class="large-12 medium-12 columns index-book <%= book.css_classes %>">
 
-            <div class="large-6 medium-6 medium-6 columns">
+            <div class="large-8 medium-8 medium-6 columns index-book-text">
             <p><%= book.title %>
                 <br>
                <%= book.author %></p>
@@ -42,24 +41,21 @@
               <% end %>
             <% end %>
             </div>
-<!--
-    <%= @book_checkout = BookCheckout.where(book_id: book.id).first.try(:id) %>
 
- -->
 
-<div class="large-6 medium-6 small-6 columns">
+<div class="large-4 medium-4 small-6 columns">
 
      <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
 
           <%= f.hidden_field :checkout_user_id, value: 3 %>
-            <%= f.hidden_field :book_id, value: book.id %>
-            <% if user_signed_in? %>
-              <% if book.user_id == current_user.id && book.checkout_user_id == nil%>
-                <%= link_to "Remove", book_path(book), :confirm => 'Works!', :class => "button", :method => :delete %>
-              <% end %>
+          <%= f.hidden_field :book_id, value: book.id %>
+          <% if user_signed_in? %>
+            <% if book.user_id == current_user.id && book.checkout_user_id == nil%>
+              <%= link_to "Remove", book_path(book), :confirm => 'Works!', :class => "button", :method => :delete %>
+            <% end %>
             <% if book.checkout_user_id == nil %>
               <% if book.user_id != current_user.id %>
-                <%= f.button :submit, "Checkout", :class => "" %>
+                <%= f.button :submit, "Checkout"%>
               <% end %>
             <% end %>
 
@@ -71,7 +67,7 @@
                 <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
               <% end %>
             <% end %> <!-- if book checked out/unavailable -->
-            <% end %> <!-- if signed in -->
+          <% end %> <!-- if signed in -->
 
           <% end %>
 </div>
@@ -79,11 +75,11 @@
 
 
 
-            </div>
+            </div> <!-- end index_book -->
 
-          </div>
-
-          <% end %>
+          </div> <!-- end book_row -->
+          <% end %> <!-- end book href -->
+          <% end %> <!-- end book loop -->
         </div>
 
 

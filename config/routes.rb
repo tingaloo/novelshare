@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :book_checkouts
   resources :books
   get '/airdrop', to: 'books#airdrop'
+  get '/test_index', to: 'books#test_index'
+  get '/about', to: 'books#about'
 end

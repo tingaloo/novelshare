@@ -11,7 +11,7 @@ $( document ).ready(function() {
       }
 
       if ($(".index-book").hasClass("available")){
-        $(this).closest(".available").css("border-color", "green");
+        $(this).closest(".available").css("border-color", "#57BD85");
       }
 
 
@@ -19,12 +19,12 @@ $( document ).ready(function() {
 
     //on mouse leave, book changes back
     $(".index-book").mouseleave(function() {
-        $(this).css("border-color", "#C5EFF7");
+        $(this).css("border-color", "#E5D1F2");
     });
 
 
     $("#toggle-available").mouseenter(function() {
-      $(".available").css("border-color", "green");
+      $(".available").css("border-color", "#57BD85");
     });
     $("#toggle-unavailable").mouseenter(function() {
       $(".unavailable").css("border-color", "red");
@@ -37,7 +37,7 @@ $( document ).ready(function() {
 
     // on mouse leave, status children will return
     $(".status-toggles").children().mouseleave(function() {
-      $(".index-book").css("border-color", "#C5EFF7");
+      $(".index-book").css("border-color", "#E5D1F2");
     });
 
 });
