@@ -16,6 +16,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'pg'
 gem 'simple_form'
+gem "paperclip", "~> 4.2"
 
 # EXTERNAL APIS
 
