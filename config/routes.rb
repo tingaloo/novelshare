@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'books/index'
 
   root to: 'books#index'
   devise_for :users
@@ -9,4 +8,5 @@ Rails.application.routes.draw do
   get '/airdrop', to: 'books#airdrop'
   get '/test_index', to: 'books#test_index'
   get '/about', to: 'books#about'
+  # get 'books/index'
 end

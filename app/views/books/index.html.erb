@@ -10,7 +10,7 @@
     <span id="toggle-unavailable">Unavailable</span>
     <span id="toggle-new"> New</span>
     <span id="book-drop">
-      <%= link_to "BookDrop", airdrop_path, :class => "", method: :get%></span>
+      <%= link_to "AirDrop", airdrop_path, method: :get%></span>
     </span>
     </h1>
       <div class="large-3 medium-6 hide-for-medium-down columns scoreboard">
@@ -20,8 +20,8 @@
           <h3>Top Bookworm: <h6><%= @bookworm.email %></h6></h3>
         <% end %>
 
-        <h3>Total Books: <%= @total_books %> </h3>
-        <h3>Total Users: <%= @total_users %> </h3><br>
+        <h3>Total Books: <%= Book.count %> </h3>
+        <h3>Total Users: <%= User.count %> </h3><br>
     <br>
     <br>
       </div>

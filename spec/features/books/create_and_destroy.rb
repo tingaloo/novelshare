@@ -7,15 +7,15 @@ Warden.test_mode!
 #   So I can close my account
 feature 'On Destroy, remove Checkouts', :devise, :js do
 
-  after(:each) do
-    Warden.test_reset!
-  end
+  # after(:each) do
+  #   Warden.test_reset!
+  # end
 
   # Scenario: User can delete own account
   #   Given I am signed in
   #   When I delete my account
   #   Then I should see an account deleted message
-  scenario 'creates book' do
+  scenario '#create and #Destroy Book' do
 
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
@@ -24,9 +24,14 @@ feature 'On Destroy, remove Checkouts', :devise, :js do
     fill_in('book_author', :with => "Dr Seuss")
     click_button 'Share It!'
 
-    expect(page).to have_text("The Cat in the Hat")
-  end
+    # expect(page).to have_text("The Cat in the Hat")
+    visit root_path
+    find('.index-book').hover
+    page.find('.button').click
 
+    expect(Book.count).to eq(0)
+
+  end
 
 end
 

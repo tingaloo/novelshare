@@ -8,7 +8,7 @@ class BookCheckout < ActiveRecord::Base
 
   def save_and_verify
     # make sure book attributes are valid
-    ActiveRecord::Base.transaction do
+    # ActiveRecord::Base.transaction do
       save
 
       book.checkout_user_id = user.id
@@ -17,6 +17,6 @@ class BookCheckout < ActiveRecord::Base
 
       user.books_read += 1
       user.save
-    end
+    # end
   end
 end

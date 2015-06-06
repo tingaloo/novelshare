@@ -1,19 +1,24 @@
 FactoryGirl.define do
   factory :book do
-  title "Gone Girl"
-  author "Gillian Flynn"
-  just_added false
-  available false
-  checkout_counter 0
+    title "Gone Girl"
+    author "Gillian Flynn"
+    just_added false
+    available false
+    checkout_counter 0
 
-  trait :invalid do
-    title nil
-  end
+    trait :invalid do
+      title nil
+    end
 
-  trait :updated do
-    title "Wrong Girl"
-    author "Not Gillian"
+    trait :updated do
+      title "Wrong Girl"
+      author "Not Gillian"
+    end
+
+    trait :unindexed do
+      title "The horrororroffu"
+      author "Just a random guy"
+    end
   end
-end
 
 end

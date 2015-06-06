@@ -1,4 +1,6 @@
 class BookCheckoutsController < ApplicationController
+  before_action :authenticate_user!
+
 
   def create
     checkout_params = {
@@ -22,7 +24,6 @@ class BookCheckoutsController < ApplicationController
     @book.checkout_user_id = nil
     @book.available = true
     @book.save
-
 
     @book_checkout.destroy
 

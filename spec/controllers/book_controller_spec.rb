@@ -30,6 +30,15 @@ RSpec.describe BooksController do
       get :show, id: book
       expect(response).to render_template :show
     end
+
+    context "with no valid GoodReads book" do
+      it "should redirect to root" do
+        book=create(:book, :unindexed)
+        get :show, id: book
+        expect(response).to redirect_to root_path
+      end
+    end
+
   end
 
   describe "GET #new" do
@@ -86,6 +95,7 @@ RSpec.describe BooksController do
   end
 
   describe "PUT #update" do
+
     # Before update, we must have user log in
     # and instantiate a book
     before :each do
@@ -142,11 +152,18 @@ RSpec.describe BooksController do
       @book = create(:book)
     end
 
-    context
-
     it "redirects to library" do
       delete :destroy, id: @book
       expect(response).to redirect_to books_path
+      expect(flash[:notice]).to be_present
+    end
+
+    it "actually destroys the record" do
+      delete :destroy, id: @book
+      get :show, id: @book.id
+
+      expect(response).to redirect_to root_path
+      expect(flash[:alert]).to be_present
     end
   end
 
