@@ -64,6 +64,13 @@
               <% if book.checkout_user_id != current_user.id %>
                 <p>Checked out by <%= User.find(book.checkout_user_id).email %></p>
               <% else %>
+<!--   create a bookreturn path here
+ -->
+<!--  creating a new return
+ -->
+<%= link_to "Return", book_return_path(id: book.id), :class=>"button",
+:method => :post %>
+
                 <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
               <% end %>
             <% end %> <!-- if book checked out/unavailable -->

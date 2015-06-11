@@ -3,7 +3,5 @@ class BookReturn < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
-  def new
 
-  end
 end
