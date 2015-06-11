@@ -1,19 +1,36 @@
-<div class="authform">
+<div class="authform card">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign up</h3>
+    <h3>Register</h3>
     <%= devise_error_messages! %>
     <div class="form-group">
-      <%= f.label :email %>
+      <h1>Name</h1>
       <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :password %>
+      <h1>Secret</h1>
       <%= f.password_field :password, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :password_confirmation %>
+      <h1>Confirm Secret</h1>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
      <%= f.submit 'Sign up', :class => 'button right' %>
   <% end %>
+
+</div>
+
+<div class="library-card">
+  <p>This card entitles you to borrow materials from NovelShare Libraries. The card is not transferable and you are responsible for all material borrowed on it. Report identity theft, dox, or compromised operations security promptly. There is a fee replacement for the card.
+  </p>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+    </div>
+  <% end %>
+
+  <div id="bar-code">
+
+  </div>
 </div>

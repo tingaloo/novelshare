@@ -3,10 +3,10 @@ main {}
 #new_user {
   background-color:white;
   background-color:rgba(255, 250, 240, 0.5);
-  height: 600px;
+
 }
 
-.sign-in-card{
+.card{
   > #new_user{
     > #id {
       font-size:42px;
@@ -41,6 +41,38 @@ main {}
 
           border-color: black;
       border-width:3px;
+
+      margin-bottom:20px;
       }
   }
+}
+
+.library-card{
+  width:400px;
+  height:230px;
+  background-color: #494A4C;
+
+  border-radius:5px;
+  border-color:black;
+  border-width: 3px;
+  > p {
+    padding: 10px 25px;
+    margin-bottom: -5px;
+
+    font-size:12px;
+    font-family: times new roman;
+    color: #C0C0C2;
+  }
+  > #bar-code {
+    background-color:white;
+    width: 100px;
+    height:85px;
+    margin-left:auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  margin-left:auto;
+    margin-right: auto;
+
+
 }
