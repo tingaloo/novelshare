@@ -19,7 +19,8 @@ $( document ).ready(function() {
 
     //on mouse leave, book changes back
     $(".index-book").mouseleave(function() {
-        $(this).css("border-color", "#E5D1F2");
+        // $(this).css("border-color", "#E5D1F2");
+        $(this).css("border-color", "black");
     });
 
 
