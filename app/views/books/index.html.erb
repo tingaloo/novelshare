@@ -1,23 +1,26 @@
-  <% unless user_signed_in? %>
+
   <%= render 'intro' %>
-  <% end %>
+
 
 <div class="row fullWidth">
   <div class="large-12 columns">
     <h1 id = 'banner'>
-    <span class="status-toggles">
+<!--     <span class="status-toggles">
     <span id="toggle-available">Available</span>
     <span id="toggle-unavailable">Unavailable</span>
     <span id="toggle-new"> New</span>
-    <span id="book-drop">
-      <%= link_to "AirDrop", airdrop_path, method: :get%></span>
+    </span> -->
+    <span class="status-toggles">
+
+      <span class="action"><%= link_to "Share Book", new_book_path %></span>
+      <span class='action'><%= link_to "AirDrop", airdrop_path, method: :get %></span>
     </span>
     </h1>
       <div class="large-3 medium-6 hide-for-medium-down columns scoreboard">
         <h1> Stats </h1>
         <% if User.exists? %>
-          <h3>Top Donor: <h6><%= @top_donor.email %></h6></h3>
-          <h3>Top Bookworm: <h6><%= @bookworm.email %></h6></h3>
+          <h3>Top Donor: <h6><%= @top_donor.username %></h6></h3>
+          <h3>Top Bookworm: <h6><%= @bookworm.username %></h6></h3>
         <% end %>
 
         <h3>Total Books: <%= Book.count %> </h3>
@@ -27,23 +30,45 @@
       </div>
       <div class ="large-9 medium-12 columns">
       <% @books.each do |book| %>
-        <%= link_to(book_path(book)) do %>
+
         <div class="row books">
 
           <div class="large-12 medium-12 columns index-book <%= book.css_classes %>">
 
-            <div class="large-8 medium-8 medium-6 columns index-book-text">
-            <p><%= book.title %>
-                <br>
-               <%= book.author %></p>
-            <% if user_signed_in? %>
-              <% unless (book.checkout_user_id == nil || book.checkout_user_id == current_user.id) %>
+            <div class="large-2 medium-3 small-12 columns">
+
+              <% unless book.cover_file_name==nil%>
+                <%= link_to(book_path(book)) do %>
+                  <%= image_tag book.cover.url %>
+                <% end %>
+
+              <% else %>
+
+              <div class="book-cover-alt index-book-text">
+                <%= link_to book.title, book_path(book) %><br>
+                <%= book.author %>
+              </div>
               <% end %>
-            <% end %>
+
             </div>
 
+            <div class="large-10 medium-9 small-12 columns fixed-width-left">
+              <% if current_user == book.user && !book.children? %>
+                <%= simple_form_for :comment, url: book_comments_path(book) do |f| %>
+                      <%= f.text_area :quote %>
+                      <%= f.submit 'Submit', class: "button" %>
+                  <% end %>
+              <% else %>
+                <% if book.children? %>
+                <h3>
+                  <%= Comment.where(book_id: book.id).first.quote.html_safe %>
+                </h3>
+                  - <%= User.find(book.user_id).username %>
+                <% end %>
+              <% end %>
 
-<div class="large-4 medium-4 small-6 columns">
+              <div class="large-12 medium-12 small-12 columns book-buttons">
+
 
      <%= simple_form_for :book_checkout, multipart: true, url: book_checkouts_path do |f| %>
 
@@ -64,19 +89,23 @@
               <% if book.checkout_user_id != current_user.id %>
                 <p>Checked out by <%= User.find(book.checkout_user_id).email %></p>
               <% else %>
-<!--   create a bookreturn path here
- -->
-<!--  creating a new return
- -->
-<%= link_to "Return", book_return_path(id: book.id), :class=>"button",
-:method => :post %>
+
+            <%= link_to "Return", book_return_path(id: book.id), :class=>"button",
+            :method => :post %>
 
                 <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
               <% end %>
-            <% end %> <!-- if book checked out/unavailable -->
-          <% end %> <!-- if signed in -->
+            <% end %>
+          <% end %>
 
           <% end %>
+
+
+
+            </div>
+
+
+
 </div>
 
 
@@ -85,7 +114,7 @@
             </div> <!-- end index_book -->
 
           </div> <!-- end book_row -->
-          <% end %> <!-- end book href -->
+
           <% end %> <!-- end book loop -->
         </div>
 

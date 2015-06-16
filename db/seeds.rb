@@ -8,6 +8,6 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-Book.create("title" => "Blink: The Power of Thinking Without Thinking", "author" =>"Malcolm Gladwell", "user_id"=>1)
-Book.create("title" => "Sophie's World",       "author" =>"Jostein Gaarder", "user_id"=>1)
-Book.create("title" => "Fifty Shades of Grey", "author" =>"E L James",      "user_id"=>1)
+# Book.create("title" => "Blink: The Power of Thinking Without Thinking", "author" =>"Malcolm Gladwell", "user_id"=>1)
+# Book.create("title" => "Sophie's World",       "author" =>"Jostein Gaarder", "user_id"=>1)
+# Book.create("title" => "Fifty Shades of Grey", "author" =>"E L James",      "user_id"=>1)

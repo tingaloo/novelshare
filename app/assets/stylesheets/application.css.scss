@@ -15,6 +15,7 @@
  *= require "books"
  *= require "users"
  *= require "devise"
+ *= require "messages"
  *= require_self
  */
 
@@ -26,6 +27,24 @@
   max-width:100%;
 }
 
-h1,h2,h3,p {
+@media only screen and (min-width: 400px)
+{
+    .fixed-width{
+      position: absolute;
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+  .fixed-width-left{
+      padding-left: 40px;
+    }
+  }
+
+h1,h2,h3,p,a {
   font-family: lato;
+}
+
+main {
+  background-color: rgb(252, 246, 237);
 }

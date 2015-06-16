@@ -3,7 +3,6 @@ class BooksController < ApplicationController
   require 'open-uri'
 
   def index
-
     # Fetches top donor/reader
     leaderboards
 
@@ -32,8 +31,8 @@ class BooksController < ApplicationController
       redirect_to root_path, :alert => "GoodReads couldn't find the associated book."
     end
 
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_url, :alert => "Record not found."
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :alert => "Record not found."
   end
 
 
@@ -46,9 +45,11 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.build(book_params)
 
+    @book = current_user.books.build(book_params)
+    @book.cover_remote_url(goodreads.book_by_title(@book.title).image_url)
     if @book.save
+
       redirect_to @book, :notice => "Book Created"
     else
       render 'new'
@@ -77,6 +78,7 @@ class BooksController < ApplicationController
  private
     def book_params
       params.require(:book).permit(:title, :author, :book_checkout_user, :cover)
+
     end
 
 end

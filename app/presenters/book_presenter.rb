@@ -8,10 +8,6 @@ class BookPresenter < SimpleDelegator
       classes << 'unavailable'
     end
 
-    # if mine?
-    #   classes << 'mine'
-    # end
-
     if just_added?
       classes << 'just_added'
     else

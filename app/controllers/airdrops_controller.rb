@@ -1,14 +1,4 @@
-class Airdrop
-  def initialize(params)
-    @user = params.fetch(:user)
-  end
-
-  def save
-    get_new_book_from_goodreads
-    # @book.cover_remote_url(goodreads.book_by_title(@book.title).image_url)
-
-    return @book.save
-  end
+class AirdropsController < ApplicationController
 
   def get_new_book_from_goodreads
     @stocks = []
