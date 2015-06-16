@@ -1,6 +1,5 @@
 class Book < ActiveRecord::Base
   belongs_to :user, counter_cache: true
-  has_many :comments
   validates :title, presence: true, length: {minimum: 3}
   validates :author, presence: true
 
@@ -8,6 +7,8 @@ class Book < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
   has_many :book_checkouts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   has_attached_file :cover
   attr_reader :cover_remote_url
 
