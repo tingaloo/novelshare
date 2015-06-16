@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20150611234316) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "book_returns", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
