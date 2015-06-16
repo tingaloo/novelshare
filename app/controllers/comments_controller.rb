@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @book.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
-      @book.cover_remote_url(goodreads.book_by_title(@book.title).image_url)
+
 
       redirect_to root_path, :notice => "Comment Saved"
     else
