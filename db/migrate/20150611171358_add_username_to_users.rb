@@ -6,3 +6,4 @@ class AddUsernameToUsers < ActiveRecord::Migration
     remove_column :users, :name
   end
 end
+
