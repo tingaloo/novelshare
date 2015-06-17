@@ -90,9 +90,6 @@
                 <p>Checked out by <%= User.find(book.checkout_user_id).email %></p>
               <% else %>
 
-            <%= link_to "Return", book_return_path(id: book.id), :class=>"button",
-            :method => :post %>
-
                 <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
               <% end %>
             <% end %>
