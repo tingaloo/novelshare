@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150620191420) do
+ActiveRecord::Schema.define(version: 20150622012955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150620191420) do
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
     t.boolean  "has_quote",          default: false
+    t.string   "book_cover_url"
   end
 
   create_table "comments", force: :cascade do |t|

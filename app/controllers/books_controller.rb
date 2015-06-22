@@ -11,12 +11,8 @@ class BooksController < ApplicationController
     end
   end
 
-
   def airdrop
     @airdrop = Airdrop.new(user: current_user)
-    # @goodreadslist = GoodReadsList.new()
-    # @list = @goodreadslist.fetch_list
-    # gets_books_and_author
 
     if @airdrop.save
       redirect_to root_path, :notice => "You have a new book!"
@@ -24,8 +20,6 @@ class BooksController < ApplicationController
       redirect_to root_path, :notice => "Airdrop quota reached."
     end
 
-    # fetch_book
-    # Goodreadsbook.new(@goodreadsbook)
   end
 
   def show

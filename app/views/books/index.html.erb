@@ -13,7 +13,7 @@
     <span class="status-toggles">
 
       <span class="action"><%= link_to "Share Book", new_book_path %></span>
-      <span class='action'><%= link_to "AirDrop", airdrop_path, method: :get %></span>
+      <span class='action'><%= link_to "Free Book!", airdrop_path, method: :get %></span>
     </span>
     </h1>
       <div class="large-3 medium-6 hide-for-medium-down columns scoreboard">
@@ -39,7 +39,8 @@
 
               <% unless book.cover_file_name==nil%>
                 <%= link_to(book_path(book)) do %>
-                  <%= image_tag book.cover.url %>
+<!--                   <%= image_tag book.cover.url %> -->
+                    <%= image_tag book.book_cover_url %>
                 <% end %>
 
               <% else %>
@@ -87,7 +88,7 @@
             <% if book.checkout_user_id != nil %>
 
               <% if book.checkout_user_id != current_user.id %>
-                <p>Checked out by <%= User.find(book.checkout_user_id).email %></p>
+                <p>Checked out by <%= User.find(book.checkout_user_id).username %></p>
               <% else %>
 
                 <%= link_to "Return", book_checkout_path(id: book.id), :confirm => 'Are you sure?', :class => "button", :method => :delete %>
