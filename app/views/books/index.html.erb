@@ -5,11 +5,6 @@
 <div class="row fullWidth">
   <div class="large-12 columns">
     <h1 id = 'banner'>
-<!--     <span class="status-toggles">
-    <span id="toggle-available">Available</span>
-    <span id="toggle-unavailable">Unavailable</span>
-    <span id="toggle-new"> New</span>
-    </span> -->
     <span class="status-toggles">
 
       <span class="action"><%= link_to "Share Book", new_book_path %></span>
@@ -56,7 +51,7 @@
             <div class="large-10 medium-9 small-12 columns fixed-width-left">
               <% if current_user == book.user && (book.children? == false)%>
                 <%= simple_form_for :comment, url: book_comments_path(book) do |f| %>
-                      <%= f.text_area :quote %>
+                      <%= f.text_area :quote, placeholder: "Leave a note for the next reader"  %>
                       <%= f.submit 'Submit', class: "button" %>
                   <% end %>
               <% else %>
