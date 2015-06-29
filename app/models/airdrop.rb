@@ -4,9 +4,6 @@ class Airdrop
   end
 
   def save
-    # get_new_book_from_goodreads
-    # @book.cover_remote_url(goodreads.book_by_title(@book.title).image_url)
-
     @goodreadslist = GoodReadsList.new()
     @list = @goodreadslist.fetch_list
     find_author_and_title

@@ -49,6 +49,7 @@
             </div>
 
             <div class="large-10 medium-9 small-12 columns fixed-width-left">
+
               <% if current_user == book.user && (book.children? == false)%>
                 <%= simple_form_for :comment, url: book_comments_path(book) do |f| %>
                       <%= f.text_area :quote, placeholder: "Leave a note for the next reader"  %>
@@ -100,6 +101,7 @@
 
 
 </div>
+
 
 
 
